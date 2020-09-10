@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>{{ 'Charging Stations' }}</h1>
+    <ul class="list-group">
+    {% for charging_station in charging_stations %}
+      <li class="list-group-item">
+          <a href="{{ url_for('main.charging_station_detail', charging_station_id=charging_station.id) }}">
+              {{ charging_station.name }}
+          </a>
+      </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>{{ driver.display_name }}</h1>
+    <ul>
+      <li>Vehicle: {{ driver.current_vehicle.vin }}</li>
+      <li>Battery: {{ driver.current_vehicle.battery.serial }}</li>
+    </ul>
+    {% include 'transactions.html' %}
+    {% include 'driver_summaries.html' %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>{{ 'Drivers' }}</h1>
+    <ul class="list-group">
+    {% for driver in drivers %}
+      <li class="list-group-item">
+          <a href="{{ url_for('main.driver_detail', driver_id=driver.id) }}">
+              {{ driver.id }}
+              {{ driver.person.display_name }}
+          </a>
+      </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

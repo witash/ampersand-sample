@@ -1,0 +1,21 @@
+<h2>Batteries</h2>
+<table id="batteries-table" class="table table-bordered table-striped data-table">
+  <thead color="default-color">
+    <tr>
+      <th>ID</th>
+      <th>Serial</th>
+      <th>Voltage</th>
+      <th>Capacity</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for battery in batteries %}
+    <tr>
+      <td><a href="/battery/{{battery.id}}/">{{ battery.id }}</a></td>
+      <td>{{ battery.serial }}</td>
+      <td> {{ battery.voltage }} </td>
+      <td> {{ battery.capacity }} </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+  <h1>{{ 'Charging Station' }} {{ charging_station.display_name }}</h1>
+    {% include 'batteries.html' %}
+    <a class="btn btn-primary" href="{{ url_for('main.new_transaction', charging_station_id=charging_station.id, next=next) }}">
+      New Transaction
+    </a>
+    {% include 'transactions.html' %}
+{% endblock %}

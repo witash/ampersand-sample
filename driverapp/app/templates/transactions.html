@@ -1,0 +1,49 @@
+<h2>Transactions</h2>
+<table id="transactions-table" class="table table-bordered table-striped data-table">
+  <thead class="default-color">
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Driver</th>
+      <th>Charging Stations</th>
+      <th>Battery In</th>
+      <th>Battery Out</th>
+      <th>Battery In Energy (kWh)</th>
+      <th>Battery Out Energy (kWh)</th>
+      <th>Odometer Reading</th>
+      <th>Distance (km)</th>
+      <th>Energy Used (kWh)</th>
+      <th>Efficiency (km/kWh)</th>
+      <th>Charge Amount(kWh)</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for transaction in transactions %}
+  <tr>
+    <td>{{ transaction.id }}</td>
+    <td>{{ transaction.transaction_date }}</td>
+    <td> <a href="{{ url_for('main.driver_detail', driver_id=transaction.driver_id) }}">{{ transaction.driver.display_name }}</a></td>
+    <td> <a href="{{ url_for('main.charging_station_detail', charging_station_id=transaction.charging_station_id) }}">{{ transaction.charging_station.display_name }}</a></td>
+    <td> 
+      {% if transaction.battery_in_id %}
+      <a href="{{ url_for('main.battery_detail', battery_id=transaction.battery_in_id) }}">{{ transaction.battery_in.serial }}</a>
+      {% endif %}
+   </td>
+    <td> 
+      {% if transaction.battery_out_id %}
+      <a href="{{ url_for('main.battery_detail', battery_id=transaction.battery_out_id) }}">{{ transaction.battery_out.serial }}</a> 
+      {% endif %}
+    </td>
+    <td> {{ transaction.battery_in_energy }} </td>
+    <td> {{ transaction.battery_out_energy }} </td>
+    <td> {{ transaction.odometer_reading }} </td> 
+    <td> {{ transaction.ride_distance }} </td> 
+    <td> {{ transaction.energy_used }} </td> 
+    <td> {{ transaction.efficiency }} </td> 
+    <td> {{ transaction.charge_amount }} </td> 
+    <td> <a href="{{ url_for('main.edit_transaction', transaction_id=transaction.id, next=next_page)}}">Edit</a></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>

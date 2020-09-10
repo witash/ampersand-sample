@@ -1,0 +1,29 @@
+version: '3'
+services:
+        redis:
+                image: "redis:5.0.4-stretch" 
+                ports:
+                        - "6379:6379"
+        web:
+                build: driverapp
+                ports:
+                        - "5000:5000"
+                depends_on:
+                        - "database"
+                        - "redis"
+                environment:
+                        - DATABASE_URI=postgresql://ampersand:ampersand@database:5432/ampersand
+                        - CELERY_BROKER_URL=redis://redis:6379/0
+        workers:
+                build: driverapp
+                command: celery worker -A app.tasks:celery
+                depends_on:
+                        - "database"
+                        - "redis"
+                environment:
+                        - DATABASE_URI=postgresql://ampersand:ampersand@database:5432/ampersand
+                        - CELERY_BROKER_URL=redis://redis:6379/0
+        database:
+                build: database
+                ports:
+                        - "5433:5432"

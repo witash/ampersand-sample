@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h2>{{ battery.serial }} </h2>
+    <ul>
+      <li>Current Energy: {{ battery.current_energy }}</li>
+    </ul>
+    <table id="battery-history-table" class="table table-bordered table-striped data-table">
+      <thead class="default-color">
+        <tr>
+          <th>Date</th>
+          <th>Owner</th>
+          <th>Energy</th>
+          <th>Distance</th>
+          <th>Efficiency</th>
+          <th>Charge Amount</th>
+        </tr>>
+      </thead>
+      {% for entry in battery_history %}
+      <tr>
+        <td> {{ entry.date }} </td>
+        <td> {{ entry.owner.display_name }} </td>
+        <td> {{ entry.energy }} </td>
+        <td> {{ entry.distance }} </td>
+        <td> {{ entry.efficiency }} </td>
+        <td> {{ entry.charge_amount }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

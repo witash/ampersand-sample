@@ -1,0 +1,23 @@
+<h2>Driver Summaries</h2>
+<table id="summary-table" class="table table-bordered table-striped data-table">
+  <thead class="default-color">
+    <tr>
+      <th>Date</th>
+      <th>Ride Distance (km)</th>
+      <th>Energy Used (aH)</th>
+      <th>Cumulative Ride Distance (km)</th>
+      <th>Cumulative Energy Used (aH)</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for driver_summary in summaries %}
+  <tr>
+    <td>{{ driver_summary.start_date }}</td>
+    <td>{{ driver_summary.ride_distance }} </td>
+    <td> {{ driver_summary.energy_used }} </td>
+    <td> {{ driver_summary.cumulative_ride_distance }} </td>
+    <td> {{ driver_summary.cumulative_energy_used }} </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
